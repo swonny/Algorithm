@@ -7,3 +7,4 @@ for _ in range(n // w):
 rest = n % w
 if rest:
     print('*' * rest)
+
