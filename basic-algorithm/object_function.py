@@ -7,3 +7,4 @@ def put_id():
 print(f'id(1) = {id(1)}')
 print(f'id(n) = {id(n)}')
 put_id()
+
