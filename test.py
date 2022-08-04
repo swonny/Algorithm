@@ -1,20 +1,8 @@
-# i = 0
-# n = int(input('n을 입력하세요: '))
-# x = []
+t = int(input())
 
-# while True:
-#     num = int(input(f'x[{i}]에 들어갈 수를 입력하세요: '))
-#     x.append(x)
-#     i += 1
-#     if i == n:
-#         break
-
-x = ['a', 'b', 'c', 'd', 'e']
-
-# reversed(x)
-# print(x[::-1])
-# x.reverse()
-# print(x)
-
-y = list(reversed(x))
-print(y)
+for _ in range(t):
+    tmp = list(map(int, input().split()))
+    N, score = tmp[0], tmp[1:]
+    avg = sum(score)/N
+    res = [n for n in score if n > avg]
+    print(format(len(res)/N*100, '.3f'), end='%\n')
