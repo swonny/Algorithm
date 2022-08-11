@@ -1,43 +1,38 @@
+from copy import deepcopy
 from sys import stdin
 
-n = int(input())
-stk = []
-ptr = 0 # 수열 ptr
-top = 0 # 스택 데이터 개수
-result = []
+n = int(stdin.readline())
+arr = list(map(int, stdin.readline().split()))
 
-numarr = list([input() for _ in range(n)])
-for num in range(1, n+1):
-    stk.append(num) # push
-    top += 1
-    result.append('+')
+stk = [] # 크기 비교 스택
+res = [] # 결과 저장 스택 : 출력 시 뒤집어야 함
+tmp = [] # 크기 비교시 임시 저장 스택
 
-    while top > 0 and stk[top - 1] == int(numarr[ptr]):
-        stk.pop()
-        top -= 1
-        result.append('-')
-        ptr += 1
-
-if(top > 0):
-    stk.reverse()
-    stkStr = ''.join(map(str, stk))
-    numarrStr = ''.join(map(str, numarr[ptr:]))
-    if stkStr == numarrStr:
-        result.append(stkStr.split())
+idx = -1
+while True:
+    if -idx > len(arr):
+        break
     else:
-        print('NO')
-        result= []
+        top = len(stk)
+        if top == 0:
+            res.append(-1)
+            stk.append(arr[idx])
+            idx -= 1
+            continue
+        if stk[top - 1] > arr[idx]:
+            res.append(stk[top - 1])
+            stk.append(arr[idx])
+        else:
+            tmp.append(stk.pop())
+            continue
+        # if len(tmp) > 0:
+        #     tmp.reverse()
+        #     # for n in tmp:
+        #     #     stk.append(n)
+        #     new = stk + tmp
+        #     print(new)
+        #     tmp.clear()
+        idx -= 1
 
-for n in result:
-    print(n)
-
-
-#     8
-# 4
-# 3
-# 6
-# 8
-# 7
-# 5
-# 2
-# 1
+res.reverse()        
+print(' '.join(map(str, res)))
