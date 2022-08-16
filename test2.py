@@ -6,18 +6,27 @@ queue = deque([])
 N = stdin.readline().rstrip()
 
 for _ in range(int(N)):
-    tmp = stdin.readline()
+    tmp = stdin.readline().rstrip()
     try:
         com, val = tmp.split()
     except ValueError:
         com = tmp
     
-    if com == 'push':
+    if com == 'push_front':
+        queue.appendleft(val)
+        
+    elif com == 'push_back':
         queue.append(val)
     
-    elif com == 'pop':
+    elif com == 'pop_front':
         try:
             print(queue.popleft())
+        except IndexError:
+            print(-1)
+            
+    elif com == 'pop_back':
+        try:
+            print(queue.pop())
         except IndexError:
             print(-1)
     
@@ -41,4 +50,4 @@ for _ in range(int(N)):
             print(-1)
             continue
         print(queue[len(queue) - 1])
-        
+ 
