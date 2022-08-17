@@ -1,53 +1,31 @@
-from collections import deque
 from sys import stdin
+from collections import deque
 
-queue = deque([])
+t = int(stdin.readline().rstrip())
+for _ in range(t):
+    p = stdin.readline().rstrip()
+    n = int(stdin.readline().rstrip())
+    arr = deque(list(stdin.readline().rstrip()[1:-1].split(',')))
+    if arr:
+        arr = deque(list(map(int, arr)))
 
-N = stdin.readline().rstrip()
-
-for _ in range(int(N)):
-    tmp = stdin.readline().rstrip()
-    try:
-        com, val = tmp.split()
-    except ValueError:
-        com = tmp
+    flag = 0
+    for comm in p:
+        if comm == 'R':
+            flag = 0 if flag else 1
+        else:
+            try:
+                if flag:
+                    arr.pop()
+                else:
+                    arr.popleft()
+            except IndexError:
+                arr = 'error'
+                break
     
-    if com == 'push_front':
-        queue.appendleft(val)
-        
-    elif com == 'push_back':
-        queue.append(val)
-    
-    elif com == 'pop_front':
-        try:
-            print(queue.popleft())
-        except IndexError:
-            print(-1)
-            
-    elif com == 'pop_back':
-        try:
-            print(queue.pop())
-        except IndexError:
-            print(-1)
-    
-    elif com == 'size':
-        print(len(queue))
-    
-    elif com == 'empty':
-        if not queue:
-            print(1)
-            continue
-        print(0)
-    
-    elif com == 'front':
-        if not queue:
-            print(-1)
-            continue
-        print(queue[0])
-    
-    elif com == 'back':
-        if not queue:
-            print(-1)
-            continue
-        print(queue[len(queue) - 1])
- 
+    if arr == 'error':
+        print(arr)
+    else:
+        if flag:
+            arr.reverse()
+        print('[' + ','.join(map(str, arr)) + ']')
