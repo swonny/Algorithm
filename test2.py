@@ -1,31 +1,22 @@
-from sys import stdin
-from collections import deque
+# 버블 정렬 알고리즘 개선 2 - 내가 짠 코드
 
-t = int(stdin.readline().rstrip())
-for _ in range(t):
-    p = stdin.readline().rstrip()
-    n = int(stdin.readline().rstrip())
-    arr = deque(list(stdin.readline().rstrip()[1:-1].split(',')))
-    if arr:
-        arr = deque(list(map(int, arr)))
-
-    flag = 0
-    for comm in p:
-        if comm == 'R':
-            flag = 0 if flag else 1
-        else:
-            try:
-                if flag:
-                    arr.pop()
-                else:
-                    arr.popleft()
-            except IndexError:
-                arr = 'error'
-                break
+def bubble_sort2(arr):
+    n = len(arr)
+    cnt = 0
+    i = 0
+    while i < n:
+        last = n - 1
+        cnt += 1
+        for j in range(n - 1, i, -1):
+            if arr[j] < arr[j - 1]:
+                arr[j], arr[j - 1] = arr[j - 1], arr[j]
+                last = j - 1
+                print('test')
+        print(last)
+        i = last + 1
     
-    if arr == 'error':
-        print(arr)
-    else:
-        if flag:
-            arr.reverse()
-        print('[' + ','.join(map(str, arr)) + ']')
+    print(f'array : {a}, cnt: {cnt}')
+
+a = [1, 3, 9, 2, 4]
+bubble_sort2(arr)
+print(a)
