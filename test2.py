@@ -1,22 +1,30 @@
-# 버블 정렬 알고리즘 개선 2 - 내가 짠 코드
+# 이진 삽입 정렬 알고리즘 구현하기
 
-def bubble_sort2(arr):
-    n = len(arr)
-    cnt = 0
-    i = 0
-    while i < n:
-        last = n - 1
-        cnt += 1
-        for j in range(n - 1, i, -1):
-            if arr[j] < arr[j - 1]:
-                arr[j], arr[j - 1] = arr[j - 1], arr[j]
-                last = j - 1
-                print('test')
-        print(last)
-        i = last + 1
+def binary_insertion_sort(a):
+    n = len(a)
+    for i in range(1, n):
+        key = a[i]
+        pl = 0
+        pr = i - 1
     
-    print(f'array : {a}, cnt: {cnt}')
+        while True:
+            pc = (pl + pr) // 2
+            if a[pc] == key:
+                break
+            elif a[pc] < key:
+                pl = pc + 1
+            else:
+                pr = pc - 1
+            if pl > pr:
+                break
+    
+    pd = pc + 1 if pl <= pr else pr + 1
+    
+    for j in range(i, pd, -1):
+        a[j] = a[j - 1]
+    a[pd] = key
 
-a = [1, 3, 9, 2, 4]
-bubble_sort2(arr)
-print(a)
+arr = [6, 4, 3, 7, 1, 9, 8]
+binary_insertion_sort(arr)
+
+print(arr)
