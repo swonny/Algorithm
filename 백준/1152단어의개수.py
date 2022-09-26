@@ -1,9 +1,14 @@
 from sys import stdin
 
+input = stdin.readline
 n = int(input())
-users = [stdin.readline().split()+[i] for i in range(n)]
-users = [(int(age), name, i) for i, (age, name) in enumerate(users)]
-users = sorted(users, key=lambda x: (x[0], x[2]))
-
-for i in range(n):
-    print(f'{users[i][0]} {users[i][1]}')
+num = dict()
+for _ in range(n):
+    key = int(input())
+    if key in num:
+        num[key] += 1
+    else:
+        num[key] = 1
+num = sorted(num.items())
+for (n, c) in num:
+    print((str(n) + '\n') * c, end='')
