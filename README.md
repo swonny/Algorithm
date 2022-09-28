@@ -4,8 +4,8 @@
 
 |완료|날짜|단원|복습|진도|백준|인덱스|
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|:heavy_check_mark:|09.26|03장|:heavy_check_mark:|-|-|[그리디](#그리디)|
-|:heavy_check_mark:|09.27|04장|:white_large_square:|-|[구현](#구현)|
+|:heavy_check_mark:|09.26|03장|:white_large_square:|-|-|[그리디](#그리디)|
+|:heavy_check_mark:|09.27|04장|:heavy_check_mark:|-|[구현](#구현)|
 |:white_large_square:|09.28|05장|:white_large_square:|-|-|
 |:white_large_square:|09.29|06장|:white_large_square:|-|-|
 |:white_large_square:|09.30|07장|:white_large_square:|-|-|
