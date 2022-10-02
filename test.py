@@ -1,9 +1,13 @@
-N = str(input())
-tmp = list(map(str, '0' + N))
-cnt = 0
-n = len(tmp)
-print(int(tmp[n - 2] + tmp[n - 1]))
-while cnt < 3:
-    cnt += 1
-    n = len(tmp)
-    print(int(tmp[n - 1]) + int(tmp[n - 2]))
+from sys import stdin
+
+# t = int(input())
+
+h, w, t = map(int, stdin.readline().strip().split())
+for n in range(1, h * w + 1):
+    remainder = n % h
+    if remainder:
+        tmp = '0' + str((n // h) + 1)
+        print(str(remainder) + tmp[-2:])
+    else:
+        tmp = '0' + str(n // h)
+        print(str(h) + tmp[-2:])

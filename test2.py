@@ -1,10 +1,14 @@
-n = int(input())
+from sys import stdin
 
-count = 0
+t = int(input())
 
-count += (n // 5)
-n %= 5
-count += (n // 3)
-n %= 3
-
-print(-1 if n else count)
+for _ in range(t):
+    h, w, n = map(int, stdin.readline().strip().split())
+    remainder = n % h
+    if remainder:
+        tmp = '0' + str((n // h) + 1)
+        print(tmp, remainder)
+        print(str(remainder) + tmp[-2:])
+    else:
+        tmp = '0' + str(h)
+        print(str(n // h) + tmp[-2:])
